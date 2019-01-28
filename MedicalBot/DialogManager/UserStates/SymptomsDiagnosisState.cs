@@ -9,7 +9,7 @@ namespace MedicalBot.DialogManager
     {
         public static List<String> Sneeze = new List<String> { "чихать", "чих", "чиханье", "чихота", "чох" };
         public static List<String> Rhinitis = new List<String> { "насморк", "сопли", "возгря" };
-        public static List<String> EarsPain = new List<String> { "стреляет ухо, трещит ухо, болит ухо, закладывает ухо" };
+        public static List<String> EarsPain = new List<String> { "стреляет ухо", "трещит ухо", "болит ухо", "закладывает ухо" };
         public static List<String> Temperature = new List<String> { "высокая температура", "повышенная температура", "жар" };
         public static List<String> Pus = new List<String> { "гной в ухе", "ухо гноит", "жидкость в ухе", "выделения из уха" };
         public static List<String> Inflamination = new List<String> { "воспаление", "болезнь" };
@@ -49,6 +49,7 @@ namespace MedicalBot.DialogManager
             for(Int32 i = 0; i < _context.Length; i++)
             {
                 _context[i] = _context[i].ToLower();
+                _context[i] = _context[i].Trim(' ', ',');
             }
             ProccessContext();
             PrepareKeyboard();
