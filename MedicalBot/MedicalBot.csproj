@@ -35,7 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,16 +51,40 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Telegram.Bot, Version=14.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telegram.Bot.14.10.0\lib\net45\Telegram.Bot.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    </Page>
+    <Compile Include="Common\ActionCommand.cs" />
+    <Compile Include="Common\Drugs.cs" />
+    <Compile Include="DialogManager\BotClientManager.cs" />
+    <Compile Include="DialogManager\UserStates\AgeSelectionState.cs" />
+    <Compile Include="DialogManager\UserStates\DefaultUserState.cs" />
+    <Compile Include="DialogManager\UserStates\DeseasedBodyPartDetectionState.cs" />
+    <Compile Include="DialogManager\IBotClientManager.cs" />
+    <Compile Include="DialogManager\IDialogManager.cs" />
+    <Compile Include="DialogManager\IUserState.cs" />
+    <Compile Include="DialogManager\UserStates\DrugSelectionState.cs" />
+    <Compile Include="DialogManager\UserStates\EarsOperationInformationState.cs" />
+    <Compile Include="DialogManager\UserStates\GenderSelectionState.cs" />
+    <Compile Include="DialogManager\UserStates\HypersensitivityDetectionState.cs" />
+    <Compile Include="DialogManager\UserStates\SymptomsDiagnosisState.cs" />
+    <Compile Include="DialogManager\UserStates\User.cs" />
+    <Compile Include="DialogManager\UserStates\СontraindicationsState.cs" />
+    <Compile Include="InputProcessingEngine\InputProcessingEngine.cs" />
+    <Compile Include="InputProcessingEngine\ISession.cs" />
+    <Compile Include="InputProcessingEngine\Session.cs" />
+    <Compile Include="UI\MainWindowViewModel.cs" />
+    <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,7 +92,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="DialogManager\DialogManager.cs" />
+    <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +116,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,6 +126,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\nurse16.png" />
+    <Resource Include="Images\nurse32.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
